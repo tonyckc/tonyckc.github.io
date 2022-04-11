@@ -1,0 +1,651 @@
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Zhicheng Guo</title>
+  <script async="" src="./JS_CSS_Files/analytics.js"></script>
+  <script src="./JS_CSS_Files/jquery-1.11.2.min.js"></script>
+  <script src="./JS_CSS_Files/bootstrap.min.js"></script>
+  <link href="./JS_CSS_Files/bootstrap.min.css" rel="stylesheet">
+  <link href="./JS_CSS_Files/css" rel="stylesheet" type="text/css">
+  <style>
+    body {
+      font-family: 'sans-serif';
+      font-size: 16px;
+      background-color: #FFFCF4;
+      color: #4F6071;
+    }
+
+    .color1 {
+      background-color: #CCC;
+    }
+
+    #header {
+      width: 100%;
+      height: 360px;
+      /*background-color: #F0EAD6*/
+      background-color: #FFFCF4;
+    }
+
+    #header-inner {
+      position: absolute;
+      width: 70%;
+      left: 30%;
+      top: 150px;
+    }
+
+    .img-me {
+      border: 3px solid white;
+      float: left;
+      height: 200px;
+    }
+
+    .header-text {
+      margin-top: 60px;
+      margin-left: 220px;
+    }
+
+    .header-text-name {
+      font-weight: bold;
+      font-size: 40px;
+    }
+
+    .header-text-email {
+      font-size: 20px;
+      font-style: italic;
+    }
+
+    .header-text-cv {
+      margin-left: 50px;
+      font-size: 20px;
+      font-style: italic;
+    }
+
+    .header-text-desc {
+      font-size: 20px;
+    }
+
+    #contact-info {
+      position: absolute;
+      left: 80%;
+      width: 20%;
+      top: 360px;
+      height: 100px;
+      background-color: #EEE;
+    }
+
+    .vspace {
+      margin-bottom: 20px;
+    }
+
+    .vspace-top {
+      margin-top: 30px;
+    }
+
+    .paper-title {
+      margin-left: 20em;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .paper-authors {
+      margin-left: 22.5em;
+      font-style: italic;
+    }
+
+    .paper-link {
+      margin-left: 22.5em;
+    }
+
+    .paper-detail {
+      margin-left: 22.5em;
+    }
+
+    .competition-title {
+      margin-left: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .competition-authors {
+      margin-left: 20px;
+      font-style: italic;
+    }
+
+    .competition-link {
+      margin-left: 20px;
+    }
+
+    .competition-detail {
+      margin-left: 20px;
+    }
+
+    .school-image {
+      width: 100px;
+    }
+
+    .dual-school-image {
+      width: 150px;
+    }
+
+    .school-name {
+      font-size: 20px;
+    }
+
+    .school-time {
+      font-style: italic;
+    }
+
+    .school-detail {}
+
+    .project-image {
+      width: 300px;
+      /* margin-right: 8em; */
+    }
+
+    .medal-image {
+      height: 300px;
+    }
+
+    .project-name {
+      margin-left: 120px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .project-detail {
+      margin-left: 120px;
+    }
+  </style>
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-50623594-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</head>
+
+<body data-gr-c-s-loaded="true">
+  <div id="header">
+    <div id="header-inner">
+      <img src="./images/me.jpg" class="img-thumbnail img-me">
+      <div class="header-text">
+        <div class="header-text-name">
+          Zhicheng Guo
+        </div>
+        <div class="header-text-email">
+          zchguo [at] stu.xidian.edu.cn
+        </div>
+        <div>
+          <a href="./images/WeChat.jpg">[WeChat]</a>
+          <a href="https://scholar.google.com/citations?user=by5-qmEAAAAJ&hl=en">[Google Scholar]</a>
+          <a href="https://github.com/gzcsudo">[Github]</a> 
+          <a href="./Files/CV_ZhichengGuo.pdf">[CV]</a>
+          <a href="./Files/中文简历_郭志成.pdf">[中文简历]</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="col-md-11 col-md-offset-1">
+      <div class="row">
+        <h2>About Me</h2>
+        <div class="vspace">
+          I am a final year master student in the School of Artificial Intelligence at Xidian University, and major in Computer Science at 
+          <a href="https://ipiu.xidian.edu.cn/" target="_blank">IPIU</a>. 
+          <br>
+          My advisor is  <a href="https://web.xidian.edu.cn/lchjiao/" target="_blank">Licheng Jiao</a> (IEEE Fellow, Fellow of Academia Europaea, CCF Fellow, CAAI Fellow, ...).
+          <br>
+          I earned my bachelor's degree in Electronic Information Science and Technology from Chengdu University of Technology in 2019.
+        </div>
+    
+
+        <div>
+          I'm currently working on : <br>
+          (1) visual-text tasks --- visual/video question answering, image/video caption, image/video-text retrieval, multi-modal transformer. <br>
+          (2) graph theory, hypergraph theory, graph/hypergraph network. <br>
+          (3) Submodular, optimal transport, Quaternion, coresets, mutual information. <br>
+          <font color="red"> Now, I am a reviewer of ICML 2022. </font>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <h2>Publications</h2>
+
+
+        <div class="row">
+          <div class="col-xs-3 text-center">
+            <img class="project-image" src="./images/Publications/paper1.png">
+          </div>
+          <br><br>
+          <div class="paper-title">
+            <a href="https://aclanthology.org/2021.acl-short.122/" target="_blank">
+            Multi-Scale Progressive Attention Network for Video Question Answering
+            </a>
+          </div>
+          <div class="paper-authors">
+            <u>Zhicheng Guo</u>, Jiaxuan Zhao, Licheng Jiao, Xu Liu, Lingling Li
+          </div>
+          <div class="paper-detail">
+            Accepted to <b> ACL 2021 </b> (CCF A)</b>
+          </div>
+        </div>
+
+
+        <div class="row vspace-top">
+          <div class="col-xs-3 text-center">
+            <img class="project-image" src="./images/Publications/paper2.png">
+          </div>
+          <br><br>
+          <div class="paper-title">
+            <a href="https://ieeexplore.ieee.org/document/9576650" target="_blank">
+              A Universal Quaternion Hypergraph Network for Multimodal Video Question Answering
+            </a>
+          </div>
+          <div class="paper-authors">
+            <u>Zhicheng Guo</u>, Jiaxuan Zhao, Licheng Jiao, Xu Liu, Fang Liu
+          </div>
+          <div class="paper-detail">
+            Accepted to <b> TMM 2021 </b> (IEEE Transactions on Multimedia, CCF B)</b>
+          </div>
+        </div>
+
+        <div class="row vspace-top">
+          <div class="col-xs-3 text-center">
+            <img class="project-image" src="./images/Publications/paper3.png">
+          </div>
+          <br><br>
+          <div class="paper-title">
+            <a href="https://arxiv.org/abs/2106.07501" target="_blank">
+              Balanced Coarsening for Multilevel Hypergraph Partitioning via Wasserstein Discrepancy
+            </a>
+          </div>
+          <div class="paper-authors">
+            <u>Zhicheng Guo</u>, Jiaxuan Zhao, Licheng Jiao, Xu Liu
+          </div>
+          <div class="paper-detail">
+            Submitted to <b> NeurIPS 2021 </b> (CCF A), arXiv preprint 2021</b>
+          </div>
+        </div>
+
+        <div class="row vspace-top">
+          <div class="col-xs-3 text-center">
+            <img class="project-image" src="./images/Publications/paper4.png">
+          </div>
+          <br><br><br>
+          <div class="paper-title">
+            <a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=83" target="_blank">
+              Domain Adaptive Semantic Segmentation with Dynamic Subdomains
+            </a>
+          </div>
+          <div class="paper-authors">
+            Pei He, <u>Zhicheng Guo</u>, Licheng Jiao, Xu Liu
+          </div>
+          <div class="paper-detail">
+            Submitted to <b> TIP 2022 </b> (CCF A)</b>
+          </div>
+        </div>
+
+        <div class="row vspace-top">
+          <div class="col-xs-3 text-center">
+            <img class="project-image" src="./images/Publications/paper5.png">
+          </div>
+          <br><br>
+          <div class="paper-title">
+            <a href="https://openaccess.thecvf.com/content/ICCV2021W/MMVRA/html/Peng_The_Multi-Modal_Video_Reasoning_and_Analyzing_Competition_ICCVW_2021_paper.html" target="_blank">
+              The Multi-Modal Video Reasoning and Analyzing Competition
+            </a>
+          </div>
+          <div class="paper-authors">
+            Haoran Peng, He Huang, Li Xu, Tianjiao Li, Jun Liu, Hossein Rahmani, Qiuhong Ke, <u>Zhicheng Guo</u>, Cong Wu,
+            Rongchang Li, Mang Ye, Jiahao Wang, Jiaxu Zhang, Yuanzhong Liu, Tao He, Fuwei Zhang, Xianbin Liu, Tao Lin
+          </div>
+          <div class="paper-detail">
+            Accepted to <b> ICCV 2021 Workshop </b></b>
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <div class="row">
+        <br>
+        <h2>AI Competitions</h2>
+        <br>
+
+        <div class="row">
+          <div class="col-xs-3 text-center">
+            <img class="project-image" src="./images/AI_Competitions/AI_Competition1.png">
+          </div>
+          <br><br>
+          <div class="paper-title">
+            <a href="https://sutdcv.github.io/multi-modal-video-reasoning/#/" target="_blank">
+            ICCV 2021: Multi-Modal Video Reasoning and Analyzing Competition
+            </a>
+          </div>
+          <div class="paper-authors">
+          Task: Track-1 & video question answering
+          </div>
+          <div class="paper-detail">
+          I won the <b> 1st </b> place as the <b> first author</b>.</b>
+          </div>
+        </div>
+
+
+        <div class="row vspace-top">
+          <div class="col-xs-3 text-center">
+            <img class="project-image" src="./images/AI_Competitions/AI_Competition2.png">
+          </div>
+          <br>
+          <div class="paper-title">
+            <a href="https://cqaw.github.io/" target="_blank">
+              CVPR 2021: Chart Question Answering Challenge
+            </a>
+          </div>
+          <div class="paper-authors">
+            Task: chart question answering
+          </div>
+          <div class="paper-detail">
+            I won the <b> 2nd </b> place as the <b> first author</b>.</b>
+          </div>
+        </div>
+
+        <div class="row vspace-top">
+          <div class="col-xs-3 text-center">
+            <img class="project-image" src="./images/AI_Competitions/AI_Competition3.png">
+          </div>
+          <br><br>
+          <div class="paper-title">
+            <a href="http://www.classic.grss-ieee.org/earthvision2021/challenge.html" target="_blank">
+              CVPR 2021: FloodNet Challenge @ EARTHVISION 2021-VQA
+            </a>
+          </div>
+          <div class="paper-authors">
+            Task: Track 2 & remote sensing image question answering
+          </div>
+          <div class="paper-detail">
+            I won the <b> 1st </b> and <b> 2nd </b> place as the <b> adviser</b>.</b>
+          </div>
+        </div>
+
+        <div class="row vspace-top">
+          <div class="col-xs-3 text-center">
+            <img class="project-image" src="./images/AI_Competitions/AI_Competition4.png">
+          </div>
+          <br>
+          <div class="paper-title">
+            <a href="https://visualqa.org/workshop_2020.html" target="_blank">
+              CVPR 2020: 2020 VizWiz-VQA Grand Challenge
+            </a>
+          </div>
+          <div class="paper-authors">
+            Task: visual question answering
+          </div>
+          <div class="paper-detail">
+            I won the <b> 2nd </b>  place as the <b> first author</b>.</b>
+            <div>
+              <a href="https://visualqa.org/challenge_2020.html">[VQA Challenge]</a>
+              <a href="https://www.youtube.com/watch?v=GqfzEKHO2Yc">[Video]</a>
+              <a href="https://drive.google.com/file/d/1zLCcBDCKOrFjzy_Bzj8FR0XUfUsY-iw_/view">[Slides]</a> 
+            </div>
+          </div>
+        </div>
+
+        <div class="row vspace-top">
+          <div class="col-xs-3 text-center">
+            <img class="project-image" src="./images/AI_Competitions/AI_Competition5.png">
+          </div>
+          <br><br>
+          <div class="paper-title">
+            <a href="https://dramaqa.snu.ac.kr/Challenge/2020" target="_blank">
+              ECCV 2020: DramaQA Challenge 2020
+            </a>
+          </div>
+          <div class="paper-authors">
+            Task: movie question answering
+          </div>
+          <div class="paper-detail">
+            I won the <b> 2nd </b>  place as the <b> first author</b>.</b>
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <div class="row">
+        <br>
+        <h2>Programming Competitions</h2>
+        <br>
+
+        <div class="row">
+          <div class="competition-title">
+            <a href="./images/Programming_Competitions/Programming_Competition1.jpg" target="_blank">
+            2020 IEEEXtreme 14.0 Global Extreme Programming Competition
+            </a>
+          </div>
+          <div class="competition-detail">
+            Among <b> 4132 </b> teams, our global rank is <b> 153 </b>, and country rank is <b> 39</b>.
+            <br>
+            I'm the <b> first author </b> of this 24-hour programming competition.</b>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="competition-title">
+            <a href="./images/Programming_Competitions/Programming_Competition2.jpg" target="_blank">
+            2019 ACM The 11th Sichuan Provincial Programming Contest
+            </a>
+          </div>
+          <div class="competition-detail">
+            I won the <b> Bronze Medal </b> as the <b> first author</b>.</b>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="competition-title">
+            <a href="./images/Programming_Competitions/Programming_Competition3.jpg" target="_blank">
+            2019 ICPC China National Invitational Programming Contest
+            </a>
+          </div>
+          <div class="competition-detail">
+            I won the <b> Bronze Medal </b> as the <b> first author</b>.</b>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="competition-title">
+            <a href="./images/Programming_Competitions/Programming_Competition4.jpg" target="_blank">
+            2019 Group Programming Ladder Tournament
+            </a>
+          </div>
+          <div class="competition-detail">
+            I won the <b> national third prize </b> as the <b>first author</b>.</b>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="competition-title">
+            <a href="./images/Programming_Competitions/Programming_Competition5.jpg" target="_blank">
+              2018 ACM-ICPC Chinese Collegiate Programming Contest
+            </a>
+          </div>
+          <div class="competition-detail">
+            I won the <b> Bronze Medal </b> as the <b> first author</b>.</b>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="competition-title">
+            <a href="./images/Programming_Competitions/Programming_Competition6.jpg" target="_blank">
+              2018 China Collegiate Programming Contest
+            </a>
+          </div>
+          <div class="competition-detail">
+            I won the <b> Bronze Medal </b> as the <b> first author</b>.</b>
+          </div>
+        </div>
+
+
+        <div class="row vspace-top">
+          <div class="col-xs-3 text-center">
+            <img class="medal-image" src="./images/Programming_Competitions/Programming_Competition2.jpg">
+            </div>
+          <div class="col-xs-3 text-center">
+            <img class="medal-image" src="./images/Programming_Competitions/Programming_Competition3.jpg">
+          </div>
+          <div class="col-xs-3 text-center">
+          <img class="medal-image" src="./images/Programming_Competitions/Programming_Competition5.jpg">
+          </div>
+          <div class="col-xs-3 text-center">
+            <img class="medal-image" src="./images/Programming_Competitions/Programming_Competition6.jpg">
+            </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <br>
+        <h2>Math Competitions</h2>
+        <br>
+
+        <div class="row">
+          <div class="competition-title">
+            <a href="./images/Math_Competitions/Math_Competition1.jpg" target="_blank">
+              2017 Contemporary Undergraduate Mathematical Contest in Modeling
+            </a>
+          </div>
+          <div class="competition-detail">
+            I won the <b> national second prize </b> in China as the <b>first author</b>.</b>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="competition-title">
+            <a href="./images/Math_Competitions/Math_Competition2.jpg" target="_blank">
+              2017 Mathematical Contest in Modeling
+            </a>
+          </div>
+          <div class="competition-detail">
+            I'm the <b>Meritorious Winner</b> as the <b>first author</b>.</b>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="competition-title">
+            <a href="./images/Math_Competitions/Math_Competition3.jpg" target="_blank">
+              2016 Mathematics Competition of Chinese College Students
+            </a>
+          </div>
+          <div class="competition-detail">
+            I won the <b>Second Prize</b> of Sichuan Province.</b>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="row vspace-top">
+        <h2>Awards</h2>
+        <li>
+          <a href="./images/Awards/Award1.jpg">
+          Outstanding University Graduates in Sichuan Province
+        </a>
+        </li>
+        <li>
+          <a href="./images/Awards/Award2.jpg">
+          Excellent Voluntary Service in Poverty-alleviation Activity
+        </a></li>
+      </div>
+
+
+      <div class="row vspace-top vspace">
+        <h2>Experience</h2>
+
+        <h4><b>Alibaba, DAMO Academy, Research Intern (2021.3)</b></h4>
+        Lab: 
+        <a href="https://damo.alibaba.com/labs/vision">
+          Decision Intelligence Laboratory (CV team)
+        </a>
+        <br>
+        Major topic: Multimodal Learning
+        <br>
+        For some reasons, I failed to go for the internship.
+        <br><br>
+
+        <h4><b>Baidu, <a href="./images/Experience/Experience2.png">
+          Baidu Campus Elite Club
+        </a>
+         (2020.2 - 2021.5)</b></h4>
+        As a member of the club, I set questions for programming competitions.
+        <br><br>
+
+        <h4><b>Captain of ACM-ICPC Competition Team (2017.6 - 2019.6)</b></h4>
+        <a href="./images/Experience/Experience3-1.jpg">
+        [Photograph 1]
+        </a>
+        <a href="./images/Experience/Experience3-2.jpg">
+          [Photograph 2]
+        </a>
+        <a href="./images/Experience/Experience3-3.jpg">
+        [Photograph 3]
+        </a>
+        <br>
+        During my undergraduate period, I formed the school's ACM-ICPC competition team. 
+        <br>As the team leader, I guided my classmates to participate in various programming competitions. 
+        <br>And I built the <a href="http://acm.cdut.edu.cn/">  Online Judge  </a>  (OJ) of my school.
+        <br><br>
+        
+      </div>
+
+      <div class="row">
+        <br>
+        <h2>Projects</h2>
+        <br>
+
+        <div class="row">
+          <div class="col-xs-3 text-center">
+            <img class="medal-image" src="./images/Projects/Project1.jpg">
+          </div>
+          <br><br><br><br>
+          <div class="paper-title">
+            A brief tutorial on artificial intelligence experiments
+            </a>
+          </div>
+          <div class="paper-detail">
+            I participated in writing this book. 
+            <br>And I was responsible for the chapter on <b> image super-resolution</b>.
+            <br>
+            This book is now available for purchase on <a href="https://item.jd.com/10032091244104.html">JD.com</a>.</b>
+            <br><br>
+            (PS: Many other projects are not mentioned.)
+          </div>
+        </div>
+      </div>
+
+      <div class="row vspace-top">
+        <h2>Skills</h2>
+        <li>Coding: C++, Python, MATLAB, CUDA, PyTorch</li>
+        <li>Others: Ubuntu, Latex, Git, <a href="https://hub.docker.com/repository/docker/gzcsudo/kahypar">Docker</a></li>
+      </div>
+
+    </div>
+  </div>
+
+  <br>
+  <p align="center"><br>
+    <span class="STYLE6">
+      All rights reserved & Last update on Feb, 2022
+    </span>
+  </p>
+
+
+</body>
+
+</html>
