@@ -65,15 +65,24 @@
         .player-list {
             list-style-type: none;
             padding: 0;
+            min-height: 300px;
         }
         
         .player-item {
-            padding: 10px 15px;
-            margin-bottom: 8px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
             background-color: #f9f9f9;
             border-radius: 4px;
             border-left: 4px solid #1e88e5;
             transition: all 0.3s ease;
+            cursor: move; /* 表示可拖动 */
+            user-select: none; /* 防止文本被选中 */
+        }
+        
+        .player-item:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
         .team-a .player-item {
@@ -88,7 +97,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-top: 20px;
+            margin: 20px 0;
         }
         
         .btn-group {
@@ -180,6 +189,61 @@
             100% { background-color: #ffeb3b; }
         }
         
+        /* 拖拽相关样式 */
+        .dragging {
+            opacity: 0.5;
+            border: 2px dashed #1e88e5;
+        }
+        
+        .drop-zone {
+            border: 2px dashed transparent;
+            transition: all 0.3s;
+            border-radius: 8px;
+        }
+        
+        .drop-zone.active {
+            border-color: #4caf50;
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        
+        .mode-switch {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .mode-switch label {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        
+        .mode-indicator {
+            padding: 8px 12px;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+        
+        .mode-manual {
+            background-color: #8bc34a;
+            color: white;
+        }
+        
+        .mode-auto {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .instructions {
+            text-align: center;
+            margin: 15px 0;
+            font-style: italic;
+            color: #666;
+            transition: all 0.3s;
+            height: 20px;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -194,25 +258,40 @@
 <body>
     <div class="header">
         <h1>篮球选秀系统</h1>
-        <p>点击按钮将球员分配到A队或B队</p>
+        <p>自动模式：点击按钮将球员分配到A队或B队</p>
+        <p>手动模式：直接拖拽球员到想要的队伍</p>
+    </div>
+    
+    <div class="mode-switch">
+        <label>
+            <input type="radio" name="mode" value="auto" checked> 自动选择模式
+        </label>
+        <label>
+            <input type="radio" name="mode" value="manual"> 手动拖拽模式
+        </label>
+        <span class="mode-indicator mode-auto" id="mode-indicator">自动模式</span>
+    </div>
+    
+    <div class="instructions" id="instructions">
+        点击下方按钮随机选择球员
     </div>
     
     <div class="container">
-        <div class="section player-pool">
-            <h2>球员库 <span class="player-count" id="pool-count">17</span></h2>
+        <div class="section player-pool drop-zone" id="pool-zone">
+            <h2>球员库 <span class="player-count" id="pool-count">19</span></h2>
             <ul class="player-list" id="player-pool">
                 <!-- 球员将通过JavaScript动态添加 -->
             </ul>
         </div>
         
-        <div class="section team team-a">
+        <div class="section team team-a drop-zone" id="team-a-zone">
             <h2>A队 <span class="player-count" id="team-a-count">0</span></h2>
             <ul class="player-list" id="team-a">
                 <!-- A队球员将通过JavaScript动态添加 -->
             </ul>
         </div>
         
-        <div class="section team team-b">
+        <div class="section team team-b drop-zone" id="team-b-zone">
             <h2>B队 <span class="player-count" id="team-b-count">0</span></h2>
             <ul class="player-list" id="team-b">
                 <!-- B队球员将通过JavaScript动态添加 -->
@@ -237,7 +316,7 @@
             "张援峰", "赖道远", "冯寒珂", "张振文", "董治平", 
             "伍三友", "刘雨洋", "肖志超", "郭树标", "沈君达", 
             "吴邦耀", "陈柯成", "陈沛然", "杨欣儒", "孙亚军", 
-            "张犇", "华东鹏", "黄润东"
+            "张犇", "华东鹏", "黄润东", "王龙" // 新增球员"王龙"
         ];
         
         // 球员分配状态
@@ -245,6 +324,9 @@
         let teamA = [];
         let teamB = [];
         let lastPickedPlayer = null;
+        let isManualMode = false;
+        let draggedPlayer = null;
+        let dragSource = null;
         
         // 获取DOM元素
         const playerPoolElement = document.getElementById('player-pool');
@@ -257,6 +339,46 @@
         const pickTeamBButton = document.getElementById('pick-team-b');
         const autoDraftButton = document.getElementById('auto-draft');
         const resetDraftButton = document.getElementById('reset-draft');
+        const modeRadios = document.getElementsByName('mode');
+        const modeIndicator = document.getElementById('mode-indicator');
+        const instructionsElement = document.getElementById('instructions');
+        
+        // 拖放区域
+        const poolZone = document.getElementById('pool-zone');
+        const teamAZone = document.getElementById('team-a-zone');
+        const teamBZone = document.getElementById('team-b-zone');
+        
+        // 模式切换事件监听
+        modeRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                isManualMode = this.value === 'manual';
+                updateModeUI();
+            });
+        });
+        
+        // 更新模式UI
+        function updateModeUI() {
+            if (isManualMode) {
+                modeIndicator.textContent = '手动模式';
+                modeIndicator.className = 'mode-indicator mode-manual';
+                instructionsElement.textContent = '拖拽球员到想要的队伍';
+                
+                // 禁用自动选择按钮
+                pickTeamAButton.disabled = true;
+                pickTeamBButton.disabled = true;
+                autoDraftButton.disabled = true;
+            } else {
+                modeIndicator.textContent = '自动模式';
+                modeIndicator.className = 'mode-indicator mode-auto';
+                instructionsElement.textContent = '点击下方按钮随机选择球员';
+                
+                // 启用自动选择按钮（如果还有球员可选）
+                const noPlayersLeft = playerPool.length === 0;
+                pickTeamAButton.disabled = noPlayersLeft;
+                pickTeamBButton.disabled = noPlayersLeft;
+                autoDraftButton.disabled = noPlayersLeft;
+            }
+        }
         
         // 初始化页面
         function initializeDraft() {
@@ -265,6 +387,62 @@
             teamB = [];
             lastPickedPlayer = null;
             updateUI();
+            updateModeUI();
+        }
+        
+        // 创建可拖拽的球员元素
+        function createPlayerElement(player, listType) {
+            const li = document.createElement('li');
+            li.className = 'player-item';
+            if (player === lastPickedPlayer) {
+                li.className += ' latest-pick';
+            }
+            li.textContent = player;
+            
+            // 添加拖拽属性和事件
+            li.setAttribute('draggable', 'true');
+            li.dataset.player = player;
+            li.dataset.source = listType;
+            
+            li.addEventListener('dragstart', function(e) {
+                if (!isManualMode) return;
+                
+                // 设置拖拽数据
+                draggedPlayer = player;
+                dragSource = listType;
+                
+                // 设置拖拽效果
+                this.classList.add('dragging');
+                e.dataTransfer.setData('text/plain', JSON.stringify({
+                    player: player,
+                    source: listType
+                }));
+                
+                // 设置拖拽图像
+                const dragIcon = this.cloneNode(true);
+                dragIcon.style.opacity = '0.5';
+                document.body.appendChild(dragIcon);
+                e.dataTransfer.setDragImage(dragIcon, 0, 0);
+                setTimeout(() => {
+                    document.body.removeChild(dragIcon);
+                }, 0);
+            });
+            
+            li.addEventListener('dragend', function() {
+                if (!isManualMode) return;
+                
+                this.classList.remove('dragging');
+                
+                // 清除拖放区域的活动状态
+                const dropZones = document.querySelectorAll('.drop-zone');
+                dropZones.forEach(zone => zone.classList.remove('active'));
+                
+                // 重置拖拽状态
+                draggedPlayer = null;
+                dragSource = null;
+            });
+            
+            return li;
         }
         
         // 更新UI显示
@@ -272,33 +450,21 @@
             // 更新球员池
             playerPoolElement.innerHTML = '';
             playerPool.forEach(player => {
-                const li = document.createElement('li');
-                li.className = 'player-item';
-                li.textContent = player;
+                const li = createPlayerElement(player, 'pool');
                 playerPoolElement.appendChild(li);
             });
             
             // 更新A队
             teamAElement.innerHTML = '';
             teamA.forEach(player => {
-                const li = document.createElement('li');
-                li.className = 'player-item';
-                if (player === lastPickedPlayer) {
-                    li.className += ' latest-pick';
-                }
-                li.textContent = player;
+                const li = createPlayerElement(player, 'teamA');
                 teamAElement.appendChild(li);
             });
             
             // 更新B队
             teamBElement.innerHTML = '';
             teamB.forEach(player => {
-                const li = document.createElement('li');
-                li.className = 'player-item';
-                if (player === lastPickedPlayer) {
-                    li.className += ' latest-pick';
-                }
-                li.textContent = player;
+                const li = createPlayerElement(player, 'teamB');
                 teamBElement.appendChild(li);
             });
             
@@ -308,10 +474,12 @@
             teamBCountElement.textContent = teamB.length;
             
             // 更新按钮状态
-            const noPlayersLeft = playerPool.length === 0;
-            pickTeamAButton.disabled = noPlayersLeft;
-            pickTeamBButton.disabled = noPlayersLeft;
-            autoDraftButton.disabled = noPlayersLeft;
+            if (!isManualMode) {
+                const noPlayersLeft = playerPool.length === 0;
+                pickTeamAButton.disabled = noPlayersLeft;
+                pickTeamBButton.disabled = noPlayersLeft;
+                autoDraftButton.disabled = noPlayersLeft;
+            }
         }
         
         // 随机选择一名球员
@@ -387,6 +555,104 @@
                 }
             }, 800); // 每800毫秒选择一次
         }
+        
+        // 移动球员函数
+        function movePlayer(player, fromArray, toArray) {
+            // 从源数组中移除
+            const index = fromArray.indexOf(player);
+            if (index !== -1) {
+                fromArray.splice(index, 1);
+            }
+            
+            // 添加到目标数组（如果不存在）
+            if (!toArray.includes(player)) {
+                toArray.push(player);
+            }
+            
+            // 设置为最新选择的球员
+            lastPickedPlayer = player;
+            
+            // 更新UI
+            updateUI();
+        }
+        
+        // 设置拖放事件
+        function setupDropZones() {
+            // 球员池拖放区域
+            poolZone.addEventListener('dragover', function(e) {
+                if (!isManualMode || !draggedPlayer) return;
+                e.preventDefault();
+                this.classList.add('active');
+            });
+            
+            poolZone.addEventListener('dragleave', function() {
+                this.classList.remove('active');
+            });
+            
+            poolZone.addEventListener('drop', function(e) {
+                if (!isManualMode || !draggedPlayer) return;
+                e.preventDefault();
+                this.classList.remove('active');
+                
+                // 根据来源移动球员
+                if (dragSource === 'teamA') {
+                    movePlayer(draggedPlayer, teamA, playerPool);
+                } else if (dragSource === 'teamB') {
+                    movePlayer(draggedPlayer, teamB, playerPool);
+                }
+            });
+            
+            // A队拖放区域
+            teamAZone.addEventListener('dragover', function(e) {
+                if (!isManualMode || !draggedPlayer) return;
+                e.preventDefault();
+                this.classList.add('active');
+            });
+            
+            teamAZone.addEventListener('dragleave', function() {
+                this.classList.remove('active');
+            });
+            
+            teamAZone.addEventListener('drop', function(e) {
+                if (!isManualMode || !draggedPlayer) return;
+                e.preventDefault();
+                this.classList.remove('active');
+                
+                // 根据来源移动球员
+                if (dragSource === 'pool') {
+                    movePlayer(draggedPlayer, playerPool, teamA);
+                } else if (dragSource === 'teamB') {
+                    movePlayer(draggedPlayer, teamB, teamA);
+                }
+            });
+            
+            // B队拖放区域
+            teamBZone.addEventListener('dragover', function(e) {
+                if (!isManualMode || !draggedPlayer) return;
+                e.preventDefault();
+                this.classList.add('active');
+            });
+            
+            teamBZone.addEventListener('dragleave', function() {
+                this.classList.remove('active');
+            });
+            
+            teamBZone.addEventListener('drop', function(e) {
+                if (!isManualMode || !draggedPlayer) return;
+                e.preventDefault();
+                this.classList.remove('active');
+                
+                // 根据来源移动球员
+                if (dragSource === 'pool') {
+                    movePlayer(draggedPlayer, playerPool, teamB);
+                } else if (dragSource === 'teamA') {
+                    movePlayer(draggedPlayer, teamA, teamB);
+                }
+            });
+        }
+        
+        // 设置拖放区域
+        setupDropZones();
         
         // 事件监听
         pickTeamAButton.addEventListener('click', pickToTeamA);
