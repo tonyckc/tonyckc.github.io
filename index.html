@@ -1,439 +1,401 @@
-
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Kecheng Chen</title>
-  <script async="" src="./JS_CSS_Files/analytics.js"></script>
-  <script src="./JS_CSS_Files/jquery-1.11.2.min.js"></script>
-  <script src="./JS_CSS_Files/bootstrap.min.js"></script>
-  <link href="./JS_CSS_Files/bootstrap.min.css" rel="stylesheet">
-  <link href="./JS_CSS_Files/css" rel="stylesheet" type="text/css">
-  <style>
-    body {
-      font-family: 'sans-serif';
-      font-size: 16px;
-      background-color: #ffffff;
-      color: #4F6071;
-    }
-
-    .color1 {
-      background-color: #CCC;
-    }
-
-    #header {
-      width: 100%;
-      height: 360px;
-      /*background-color: #F0EAD6*/
-      background-color: #ffffff;
-    }
-
-    #header-inner {
-      position: absolute;
-      width: 70%;
-      left: 30%;
-      top: 150px;
-    }
-
-    .img-me {
-      border: 10px solid white;
-      float: left;
-      height: 160px;
-    }
-
-    .header-text {
-      margin-top: 60px;
-      margin-left: 220px;
-    }
-
-    .header-text-name {
-      font-weight: bold;
-      font-size: 40px;
-    }
-
-    .header-text-email {
-      font-size: 20px;
-      font-style: italic;
-    }
-
-    .header-text-cv {
-      margin-left: 50px;
-      font-size: 20px;
-      font-style: italic;
-    }
-
-    .header-text-desc {
-      font-size: 20px;
-    }
-
-    #contact-info {
-      position: absolute;
-      left: 80%;
-      width: 20%;
-      top: 360px;
-      height: 100px;
-      background-color: #EEE;
-    }
-
-    .vspace {
-      margin-bottom: 20px;
-    }
-
-    .vspace-top {
-      margin-top: 30px;
-    }
-
-    .paper-title {
-      
-      margin-left: 20em;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .paper-authors {
-      
-      margin-left: 22.5em;
-      font-style: italic;
-    }
-
-    .paper-link {
-      margin-left: 22.5em;
-    }
-
-    .paper-detail {
-      margin-left: 22.5em;
-    }
-
-    .competition-title {
-      margin-left: 20px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .competition-authors {
-      margin-left: 20px;
-      font-style: italic;
-    }
-
-    .competition-link {
-      margin-left: 20px;
-    }
-
-    .competition-detail {
-      margin-left: 20px;
-    }
-
-    .school-image {
-      width: 100px;
-    }
-
-    .dual-school-image {
-      width: 150px;
-    }
-
-    .school-name {
-      font-size: 20px;
-    }
-
-    .school-time {
-      font-style: italic;
-    }
-
-    .school-detail {}
-
-    .project-image {
-      width: 300px;
-      /* margin-right: 8em; */
-    }
-
-    .medal-image {
-      height: 300px;
-    }
-
-    .project-name {
-      margin-left: 120px;
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .project-detail {
-      margin-left: 120px;
-    }
-  </style>
-  <script>
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-50623594-1', 'auto');
-    ga('send', 'pageview');
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>篮球选秀系统</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #1e88e5;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .section {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .player-pool {
+            min-height: 400px;
+        }
+        
+        .team {
+            min-height: 400px;
+        }
+        
+        .team-a {
+            background-color: #e3f2fd;
+        }
+        
+        .team-b {
+            background-color: #ffebee;
+        }
+        
+        h2 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            color: #1e88e5;
+        }
+        
+        .player-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .player-item {
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            border-left: 4px solid #1e88e5;
+            transition: all 0.3s ease;
+        }
+        
+        .team-a .player-item {
+            border-left-color: #2196f3;
+        }
+        
+        .team-b .player-item {
+            border-left-color: #f44336;
+        }
+        
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #1e88e5;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        
+        button:hover {
+            background-color: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:disabled {
+            background-color: #bdbdbd;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-team-a {
+            background-color: #2196f3;
+        }
+        
+        .btn-team-a:hover {
+            background-color: #1976d2;
+        }
+        
+        .btn-team-b {
+            background-color: #f44336;
+        }
+        
+        .btn-team-b:hover {
+            background-color: #d32f2f;
+        }
+        
+        .btn-reset {
+            background-color: #757575;
+        }
+        
+        .btn-reset:hover {
+            background-color: #616161;
+        }
+        
+        .btn-auto {
+            background-color: #4caf50;
+        }
+        
+        .btn-auto:hover {
+            background-color: #388e3c;
+        }
+        
+        .player-count {
+            font-weight: bold;
+            margin-left: 10px;
+            color: #757575;
+        }
+        
+        .animation {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .latest-pick {
+            background-color: #ffeb3b !important;
+            border-left-color: #ffc107 !important;
+            font-weight: bold;
+            animation: highlight 1s ease-in-out;
+        }
+        
+        @keyframes highlight {
+            0% { background-color: #ffc107; }
+            100% { background-color: #ffeb3b; }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .section {
+                min-width: auto;
+            }
+        }
+    </style>
 </head>
-
-
- <body data-gr-c-s-loaded="true">
-  <div id="header">
-    <div id="header-inner">
-      <img src="./images/mememe.jpg" class="img-thumbnail img-me">
-      
-      <div class="header-text">
-        <div class="header-text-name">
-          Kecheng Chen
-        </div>
-        <div class="header-text-email">
-          cs.ckc96 [at] gmail.com (preferred) / ck.ee [at] my.cityu.edu.hk
-        </div>
-        <div>
-          
-          <a href="https://scholar.google.com/citations?user=xE3hzToAAAAJ&hl=en">[Google Scholar]</a>
-          <a href="https://github.com/tonyckc">[Github]</a> 
-          <a href="https://drive.google.com/file/d/1SDrQDAqF2XELG8pt5ZkBk3VPcflKdNKS/view?usp=sharing">[CV]</a>
-       
-        </div>
-      </div>
+<body>
+    <div class="header">
+        <h1>篮球选秀系统</h1>
+        <p>点击按钮将球员分配到A队或B队</p>
     </div>
-  </div>
-
-  <div class="container">
-    <div class="col-md-11 col-md-offset-1">
-      <div class="row">
-        <h2>Biography</h2>
-        <div class="vspace">
-          I am a PhD student at Department of Electrical Engineering, City University of Hong Kong, co-supervised by <a href="https://scholars.cityu.edu.hk/en/persons/hong-yan(e4dbdba0-cead-46cb-b7e2-ed86fd3cec9b).html" target="_blank"> Prof. Yan Hong </a> and <a href="https://hlli1991.github.io/" target="_blank"> Dr. Li Haoliang. </a>  
-          
-          
-        </div>
     
-
-        <div class="vspace">
-          I'm currently working on: <br>
-          (1) Transfer Learning (Domain Adaptation/Generalization/Test-time Adaptation) and its wide applications in healthcare fields <br>
-          (2) LLM/VLM with Image and Video Coding<br>
-          (3) Robust Complex Digital Signal Processing with Machine Learning, such as TEM and EEG signals<br>
-          
+    <div class="container">
+        <div class="section player-pool">
+            <h2>球员库 <span class="player-count" id="pool-count">17</span></h2>
+            <ul class="player-list" id="player-pool">
+                <!-- 球员将通过JavaScript动态添加 -->
+            </ul>
         </div>
         
-      </div>
-
-      <div class="row">
-        <h2>Recent Works and Selected Publications</h2>
-
-
-     <style>
-.row {
-    display: flex;
-    align-items: flex-start; /* Aligns items to the top */
-    margin-bottom: 20px;
-}
-
-.project-image {
-    max-width: 100%;
-    height: auto;
-}
-
-.text-content {
-    padding-left: 15px; /* Add some spacing between image and text */
-    flex: 1;
-}
-</style>
-
-<div class="row">
-    <div class="text-content">
-        <div class="paper-title">
-            <a>
-            Large Language Models for Lossless Image Compression: Next-Pixel Prediction in Language Space is All You Need
-            </a>
+        <div class="section team team-a">
+            <h2>A队 <span class="player-count" id="team-a-count">0</span></h2>
+            <ul class="player-list" id="team-a">
+                <!-- A队球员将通过JavaScript动态添加 -->
+            </ul>
         </div>
-        <div class="paper-authors">
-            <b>Kecheng Chen,</b> Pingping Zhang, Hui Liu, Jie Liu, Yibing Liu, Jiaxin Huang, Shiqi Wang, Hong Yan, Haoliang Li
-        </div>
-        <div class="paper-detail">
-            <b>Preprint</b> / <a href="https://arxiv.org/pdf/2411.12448" target="_blank">Project Page with Paper and Code</a>
+        
+        <div class="section team team-b">
+            <h2>B队 <span class="player-count" id="team-b-count">0</span></h2>
+            <ul class="player-list" id="team-b">
+                <!-- B队球员将通过JavaScript动态添加 -->
+            </ul>
         </div>
     </div>
-</div>
+    
+    <div class="controls">
+        <div class="btn-group">
+            <button id="pick-team-a" class="btn-team-a">选择到A队</button>
+            <button id="pick-team-b" class="btn-team-b">选择到B队</button>
+        </div>
+        <div class="btn-group">
+            <button id="auto-draft" class="btn-auto">自动分队</button>
+            <button id="reset-draft" class="btn-reset">重新开始</button>
+        </div>
+    </div>
 
-      <div class="row">
-                <div class="paper-title">
-                  <a>
-                  Test-time Adaptation for Image Compression with Distribution Regularization
-                  </a>
-                </div>
-                <div class="paper-authors">
-                  <b>Kecheng Chen,</b> Pingping Zhang, Tiexin Qin, Shiqi Wang, Hong Yan, Haoliang Li
-                </div>
-                <div class="paper-detail">
-                   <b> Preprint </b> / <a href="https://arxiv.org/abs/2410.12191" target="_blank"> Project Page with Paper and Code </a>
-                </div>
-              </div>
-
+    <script>
+        // 球员数据
+        const allPlayers = [
+            "张援峰", "赖道远", "冯寒珂", "张振文", "董治平", 
+            "伍三友", "刘雨洋", "肖志超", "郭树标", "沈君达", 
+            "吴邦耀", "陈柯成", "陈沛然", "杨欣儒", "孙亚军", 
+            "张犇", "华东鹏", "黄润东"
+        ];
         
-      <div class="row">
+        // 球员分配状态
+        let playerPool = [...allPlayers];
+        let teamA = [];
+        let teamB = [];
+        let lastPickedPlayer = null;
+        
+        // 获取DOM元素
+        const playerPoolElement = document.getElementById('player-pool');
+        const teamAElement = document.getElementById('team-a');
+        const teamBElement = document.getElementById('team-b');
+        const poolCountElement = document.getElementById('pool-count');
+        const teamACountElement = document.getElementById('team-a-count');
+        const teamBCountElement = document.getElementById('team-b-count');
+        const pickTeamAButton = document.getElementById('pick-team-a');
+        const pickTeamBButton = document.getElementById('pick-team-b');
+        const autoDraftButton = document.getElementById('auto-draft');
+        const resetDraftButton = document.getElementById('reset-draft');
+        
+        // 初始化页面
+        function initializeDraft() {
+            playerPool = [...allPlayers];
+            teamA = [];
+            teamB = [];
+            lastPickedPlayer = null;
+            updateUI();
+        }
+        
+        // 更新UI显示
+        function updateUI() {
+            // 更新球员池
+            playerPoolElement.innerHTML = '';
+            playerPool.forEach(player => {
+                const li = document.createElement('li');
+                li.className = 'player-item';
+                li.textContent = player;
+                playerPoolElement.appendChild(li);
+            });
             
-                <div class="paper-title">
-                  <a>
-                  Unsupervised Domain Adaptation for Low-dose CT Reconstruction via Bayesian Uncertainty Alignment
-                  </a>
-                </div>
-                <div class="paper-authors">
-                  <b>Kecheng Chen,</b> Jie Liu, Renjie Wan, Victor Ho-Fun Lee, Varut Vardhanabhuti, Hong Yan, and Haoliang Li
-                </div>
-                <div class="paper-detail">
-                   <b> IEEE Transactions on Neural Networks and Learning Systems 2024 </b> / <a href="https://tonyckc.github.io/UDA-BUA/" target="_blank"> Project Page with Paper and Code </a>
-                </div>
-              </div>
+            // 更新A队
+            teamAElement.innerHTML = '';
+            teamA.forEach(player => {
+                const li = document.createElement('li');
+                li.className = 'player-item';
+                if (player === lastPickedPlayer) {
+                    li.className += ' latest-pick';
+                }
+                li.textContent = player;
+                teamAElement.appendChild(li);
+            });
+            
+            // 更新B队
+            teamBElement.innerHTML = '';
+            teamB.forEach(player => {
+                const li = document.createElement('li');
+                li.className = 'player-item';
+                if (player === lastPickedPlayer) {
+                    li.className += ' latest-pick';
+                }
+                li.textContent = player;
+                teamBElement.appendChild(li);
+            });
+            
+            // 更新计数
+            poolCountElement.textContent = playerPool.length;
+            teamACountElement.textContent = teamA.length;
+            teamBCountElement.textContent = teamB.length;
+            
+            // 更新按钮状态
+            const noPlayersLeft = playerPool.length === 0;
+            pickTeamAButton.disabled = noPlayersLeft;
+            pickTeamBButton.disabled = noPlayersLeft;
+            autoDraftButton.disabled = noPlayersLeft;
+        }
         
+        // 随机选择一名球员
+        function getRandomPlayer() {
+            if (playerPool.length === 0) return null;
+            const randomIndex = Math.floor(Math.random() * playerPool.length);
+            const player = playerPool[randomIndex];
+            playerPool.splice(randomIndex, 1);
+            return player;
+        }
         
-      <div class="row">
+        // 选择到A队
+        function pickToTeamA() {
+            const player = getRandomPlayer();
+            if (player) {
+                teamA.push(player);
+                lastPickedPlayer = player;
+                updateUI();
                 
-                <div class="paper-title">
-                  <a>
-                  Learning Robust Shape Regularization for Generalizable Medical Image Segmentation
-                  </a>
-                </div>
-                <div class="paper-authors">
-                  <b>Kecheng Chen,</b> Tiexin Qin, Victor Ho-Fun Lee, Hong Yan, and Haoliang Li
-                </div>
-                <div class="paper-detail">
-                   <b> IEEE Transactions on Medical Imaging 2024 </b> / <a href="https://tonyckc.github.io/WT-PSE/" target="_blank"> Project Page with Paper and Code </a>
-                </div>
-              </div>
+                // 如果球员池为空，显示完成提示
+                if (playerPool.length === 0) {
+                    setTimeout(() => {
+                        alert('所有球员已分配完毕！');
+                    }, 500);
+                }
+            }
+        }
         
-        <div class="row">
-         
-          <div class="paper-title">
-            <a>
-            Cross-domain Low-dose CT Image Denoising with Semantic Preservation and Noise Alignment
-            </a>
-          </div>
-          <div class="paper-authors">
-            Jiaxin Huang, <b>Kecheng Chen,</b> Yazhou Ren, Jiayu Sun, Xiaorong Pu, and Ce Zhu
-          </div>
-          <div class="paper-detail">
-             <b> IEEE Transactions on Multimedia 2024 </b>
-          </div>
-        </div>
+        // 选择到B队
+        function pickToTeamB() {
+            const player = getRandomPlayer();
+            if (player) {
+                teamB.push(player);
+                lastPickedPlayer = player;
+                updateUI();
+                
+                // 如果球员池为空，显示完成提示
+                if (playerPool.length === 0) {
+                    setTimeout(() => {
+                        alert('所有球员已分配完毕！');
+                    }, 500);
+                }
+            }
+        }
         
-      
-
-        <div class="row">
-         
-          <div class="paper-title">
-            <a>
-            Domain Generalization with Small Data
-            </a>
-          </div>
-          <div class="paper-authors">
-            <b>Kecheng Chen</b>, Elena Gal, Hong Yan and Haoliang Li
-          </div>
-          <div class="paper-detail">
-            <b> International Journal of Computer Vision (IJCV) 2024 </b> / <a href="https://tonyckc.github.io/SDDG/" target="_blank"> Project Page with Paper and Code </a>
-          </div>
-        </div>
-        
-        
-    
-        <div class="row">
-        
-          <div class="paper-title">
-            <a>
-            TEM-NLnet: A Deep Denoising Network for Transient Electromagnetic Signal With Noise Learning
-            </a>
-          </div>
-          <div class="paper-authors">
-             Mingyue Wang, Fanqiang Lin, <b> Kecheng Chen*</b>, Wei Luo, and Sunyuan Qiang; *Equal Contribution
-          </div>
-          <div class="paper-detail">
-           <b> IEEE Transactions on Geoscience and Remote Sensing 2022</b> / <a href="https://github.com/tonyckc/TEM-NLnet_demo/" target="_blank"> Project Page with Paper and Code </a>
-          </div>
-        </div>
-
-
-        <div class="row vspace-top">
-        
-          <div class="paper-title">
-            <a>
-              TEMDnet: A Novel Deep Denoising Network for Transient Electromagnetic Signal With Signal-to-Image Transformation (ESI Highly Cited Paper)
-            </a>
-          </div>
-          <div class="paper-authors">
-            <b>Kecheng Chen</b>, Xiaorong Pu, Yazhou Ren, Hang Qiu, Fanqiang Lin, and Saiming Zhang
-          </div>
-          <div class="paper-detail">
-           <b> IEEE Transactions on Geoscience and Remote Sensing 2021 (ESI Highly Cited Paper) </b>  / <a href="https://github.com/tonyckc/TEMDnet_demo/" target="_blank"> Project Page with Paper and Code </a>
-          </div>
-        </div>
-
-        <div class="row vspace-top">
-       
-          <div class="paper-title">
-            <a>
-            Cross-domain Object Classification via Successive Subspace Alignment
-            </a>
-          </div>
-          <div class="paper-authors">
-            <b>Kecheng Chen</b>, Haoliang Li and Hong Yan
-          </div>
-          <div class="paper-detail">
-             <b> IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP) 2023 </b>
-          </div>
-        </div>
-
-        <div class="row vspace-top">
-        
-          <div class="paper-title">
-            <a>
-            Lesion-Inspired Denoising Network: Connecting Medical Image Denoising and Lesion Detection
-            </a>
-          </div>
-          <div class="paper-authors">
-            <b>Kecheng Chen</b>, Kun Long, Jiayu Sun, Yazhou Ren, and Xiaorong Pu
-          </div>
-          <div class="paper-detail">
-           <b> ACM International Multimedia Conference (MM) 2021 </b>
-          </div>
-        </div>
-        
-      
-      </div>
-
-
-      <div class="row">
-        <br>
-        <h2>AI Competitions</h2>
-        <br>
-
-        <div class="row">
-          <div class="col-xs-3 text-center">
+        // 自动分队
+        function autoDraft() {
+            if (playerPool.length === 0) return;
             
-          </div>
-          <br><br>
-          <div class="paper-title">
-            <a href="https://www.en.scse.uestc.edu.cn/info/1010/1695.htm" target="_blank">
-           The Fourth International Symposium on Image Computing and Digital Medicine (ISICDM 2020)  
-            </a>
-          </div>
-          <div class="paper-authors">
-          Challege for The Quality Optimization for Low-dose CT Image
-          </div>
-          <div class="paper-detail">
-          Our team won the <b> 1st </b> place and I am as the <b> first author</b>.</b>
-          </div>
-        </div>
-  <a href='https://clustrmaps.com/site/1bypi'  title='Visit tracker'><img src='//clustrmaps.com/map_v2.png?cl=ffffff&w=251&t=t&d=DQNN7163_nm0mRKfU2pbnwCET5DqCjzBTwgyscgKZSI&co=2d78ad&ct=ffffff'/></a>
-
+            // 禁用按钮，防止重复点击
+            autoDraftButton.disabled = true;
+            pickTeamAButton.disabled = true;
+            pickTeamBButton.disabled = true;
+            
+            const intervalId = setInterval(() => {
+                if (playerPool.length === 0) {
+                    clearInterval(intervalId);
+                    setTimeout(() => {
+                        alert('所有球员已分配完毕！');
+                        // 重新启用按钮
+                        autoDraftButton.disabled = true;
+                        pickTeamAButton.disabled = true;
+                        pickTeamBButton.disabled = true;
+                    }, 500);
+                    return;
+                }
+                
+                // 交替选择到A队和B队
+                if (teamA.length <= teamB.length) {
+                    pickToTeamA();
+                } else {
+                    pickToTeamB();
+                }
+            }, 800); // 每800毫秒选择一次
+        }
         
-
-
-
-  <br>
-  <p align="center"><br>
-    <span class="STYLE6">
-      All rights reserved & Last update on Feb, 2022
-    </span>
-  </p>
-
-
+        // 事件监听
+        pickTeamAButton.addEventListener('click', pickToTeamA);
+        pickTeamBButton.addEventListener('click', pickToTeamB);
+        autoDraftButton.addEventListener('click', autoDraft);
+        resetDraftButton.addEventListener('click', initializeDraft);
+        
+        // 初始化
+        initializeDraft();
+    </script>
 </body>
-
 </html>
